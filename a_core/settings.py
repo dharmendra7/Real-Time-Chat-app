@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
 
-CSRF_TRUSTED_ORIGINS = [ 'https://*' ]
+CSRF_TRUSTED_ORIGINS = [ 'https://*', "https://6fe8-2405-201-2032-c8ca-a883-1cdf-86fe-1023.ngrok-free.app " ]
 
 
 # Application definition
@@ -90,10 +90,21 @@ TEMPLATES = [
 # WSGI_APPLICATION = 'a_core.wsgi.application'
 ASGI_APPLICATION = 'a_core.asgi.application'
 
+# local
+# CHANNEL_LAYERS = {
+#     'default':{
+#         'BACKEND': 'channels.layers.InMemoryChannelLayer',
+#     }
+# }
+
+# production
 CHANNEL_LAYERS = {
-    'default':{
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',
-    }
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+        },
+    },
 }
 
 
