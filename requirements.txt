@@ -6,3 +6,4 @@ django-htmx
 channels==4.2.0
 daphne==4.1.2
 channels-redis
+django-webpush==0.3.6

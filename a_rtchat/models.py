@@ -45,3 +45,9 @@ class GroupMessage(models.Model):
     #         return True 
     #     except:
     #         return False
+
+from webpush.models import SubscriptionInfo  # This is part of django-webpush
+
+class WebPushDevice(models.Model):
+    user = models.ForeignKey(User, related_name="webpush_info", on_delete=models.CASCADE)
+    subscription = models.OneToOneField(SubscriptionInfo, on_delete=models.CASCADE)

@@ -114,7 +114,21 @@
     {% block layout %}
     {% endblock %}
 
-    {% block javascript %}{% endblock %}
+    {% block javascript %}
+    <script>
+        // Example: Notification logic
+        if ('Notification' in window) {
+            Notification.requestPermission().then(permission => {
+                if (permission === 'granted') {
+                    const notification = new Notification('Hello!', {
+                        body: 'This is a browser notification!',
+                        icon: '{% static "favicon.ico" %}' // Replace with your icon path
+                    });
+                }
+            });
+        }
+    </script>
+    {% endblock %}
 
 </body>
 </html>
